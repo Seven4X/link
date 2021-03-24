@@ -3,7 +3,7 @@
 }
 
 .content {
-    min-height: calc(100vh - 22px);
+    min-height: calc(100vh - 1em);
     display: flex;
     justify-content: center;
     align-items: center;

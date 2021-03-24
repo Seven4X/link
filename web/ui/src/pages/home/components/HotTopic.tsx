@@ -3,10 +3,18 @@ import {Card, Space} from 'antd'
 import {ListHotTopic} from "../service";
 import {useHistory} from "react-router-dom";
 import styles from './hotTopic.module.css'
+import {configResponsive, useResponsive} from 'ahooks';
 
+configResponsive({
+    small: 0,
+    middle: 800,
+    large: 1200,
+});
 const HostTopic: React.FC = () => {
     const [data, setData] = useState([])
     const history = useHistory()
+
+    const responsive = useResponsive();
 
     useEffect(() => {
         ListHotTopic().then(res => {
@@ -23,22 +31,26 @@ const HostTopic: React.FC = () => {
     }
 
     return (
-        <Card title="发现" className={styles.title}>
+        <>
+            <Card title="发现" className={styles.title}>
 
-            <Space className={styles.container}>
-                {
-                    data.map((item) =>
-                        <Card key={"card" + item.id} className={styles.card} onClick={() => {
-                            toHot(item)
-                        }}>
-                            <span>{item.name}</span>
-                        </Card>
-                    )
-                }
-            </Space>
+                <Space className={styles.container} wrap={true}
+                       direction={responsive['middle'] ? "horizontal" : "vertical"}>
+                    {
+                        data.map((item) =>
+                            <Card hoverable={true} key={"card" + item.id} className={styles.card} onClick={() => {
+                                toHot(item);
+                            }}>
+                                <span>{item.name}</span>
+                            </Card>
+                        )
+                    }
+                </Space>
 
 
-        </Card>
+            </Card>
+        </>
+
     )
 }
 

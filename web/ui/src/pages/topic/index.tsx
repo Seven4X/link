@@ -142,7 +142,7 @@ function TopicHome() {
             <FooterWrapper>
                 <Row align="middle">
                     <Col flex="142px">
-                        感谢:
+                        感谢推荐人:
                     </Col>
                     <Col flex="auto">
                         <Avatar.Group
