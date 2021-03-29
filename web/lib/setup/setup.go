@@ -62,7 +62,9 @@ func SetupEcho() (e *echo.Echo) {
 			}),
 		),
 	)
-
+	e.Use(middleware.GzipWithConfig(middleware.GzipConfig{
+		Level: 5,
+	}))
 	e.HTTPErrorHandler = customHTTPErrorHandler
 
 	initRouter(e)
